@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Globe, Mail, Link2, Share2 } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -27,10 +27,10 @@ export default function Footer() {
   ];
 
   const socialIcons = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Globe, href: '#', label: 'Website' },
+    { icon: Mail, href: '#', label: 'Email' },
+    { icon: Link2, href: '#', label: 'Link' },
+    { icon: Share2, href: '#', label: 'Share' },
   ];
 
   return (

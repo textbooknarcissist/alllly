@@ -9,31 +9,6 @@ export default function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
   const ref = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Auto-slide testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   const testimonials = [
     {
       name: 'Sarah Johnson',
@@ -57,6 +32,30 @@ export default function TestimonialsSection() {
       text: 'I love how modern and secure Ally Digital feels. The app is beautifully designed and the security features give me peace of mind.',
     },
   ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
 
   return (
     <section ref={ref} className="section-padding bg-white dark:bg-slate-950">
@@ -101,7 +100,7 @@ export default function TestimonialsSection() {
 
               {/* Testimonial Text */}
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 leading-relaxed italic">
-                "{testimonials[current].text}"
+                “{testimonials[current].text}”
               </p>
 
               {/* Author Info */}

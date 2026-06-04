@@ -90,7 +90,7 @@ export default function ProductsSection() {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {products.map((product, i) => {
+          {products.map((product) => {
             const Icon = product.icon;
             return (
               <motion.div
