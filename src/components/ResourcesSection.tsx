@@ -37,7 +37,7 @@ export default function ResourcesSection() {
   const isInView = useInView(ref, 0.12);
 
   return (
-    <section id="resources" ref={ref} className="bg-white py-20">
+    <section id="resources" ref={ref} className="py-32">
       <div className="container">
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>

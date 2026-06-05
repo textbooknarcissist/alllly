@@ -101,6 +101,17 @@ img {
     color 0.2s ease;
 }
 
+.btn-primary {
+  padding: 0.95rem 1.8rem;
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--navy-90);
+  transform: translateY(-1px);
+}
+
 .btn-white {
   padding: 0.95rem 1.8rem;
   background: #ffffff;

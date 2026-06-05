@@ -31,7 +31,7 @@ export default function HowItWorksSection() {
   const isInView = useInView(ref, 0.12);
 
   return (
-    <section id="how" ref={ref} className="bg-white py-20">
+    <section id="how" ref={ref} className="py-32">
       <div className="container">
         <div className="max-w-3xl space-y-5 text-ink">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">

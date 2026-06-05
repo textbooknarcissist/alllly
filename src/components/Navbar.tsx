@@ -59,7 +59,7 @@ export default function Navbar() {
             >
               Log In
             </a>
-            <a href="#hero" className="btn-white text-navy">
+            <a href="#hero" className="btn-primary">
               Open Account
             </a>
           </div>

@@ -47,7 +47,7 @@ export default function ProductsSection() {
   const isInView = useInView(ref, 0.12);
 
   return (
-    <section id="products" ref={ref} className="bg-white py-20">
+    <section id="products" ref={ref} className="py-32">
       <div className="container">
         <div className="max-w-3xl space-y-6 pb-12">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
@@ -102,7 +102,7 @@ export default function ProductsSection() {
             </div>
           </motion.article>
 
-          <div className="grid gap-6">
+          <div className="grid gap-6 sm:grid-cols-2">
             {products.map((product, index) => {
               const Icon = product.icon;
               return (

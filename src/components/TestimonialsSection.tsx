@@ -34,7 +34,7 @@ export default function TestimonialsSection() {
   const isInView = useInView(ref, 0.12);
 
   return (
-    <section ref={ref} className="bg-stone py-20">
+    <section ref={ref} className="py-32">
       <div className="container">
         <div className="max-w-3xl text-center mx-auto mb-12">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">

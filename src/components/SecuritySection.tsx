@@ -33,7 +33,7 @@ export default function SecuritySection() {
   const isInView = useInView(ref, 0.12);
 
   return (
-    <section id="security" ref={ref} className="bg-white py-20">
+    <section id="security" ref={ref} className="py-32">
       <div className="container">
         <div className="text-center mb-16">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
@@ -57,7 +57,7 @@ export default function SecuritySection() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="rounded-[1.25rem] border border-stone-2 bg-white p-8"
+                className="rounded-[1.25rem] border border-stone-2 bg-white shadow-soft p-8"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-[14px] bg-stone text-navy">
                   <Icon size={20} />
