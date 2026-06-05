@@ -1,158 +1,89 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
+import useInView from "@/hooks/useInView";
+
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "Freelance Designer",
+    initials: "SJ",
+    rating: 5,
+    text: "Switching to Ally Digital was the best decision for my finances. The intuitive interface and smart tools have helped me save 30% more each month.",
+  },
+  {
+    name: "Michael Chen",
+    role: "Small Business Owner",
+    initials: "MC",
+    rating: 5,
+    text: "The business banking features are incredible. Instant transfers, automated accounting, and 24/7 support make running my business seamless.",
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Software Engineer",
+    initials: "ER",
+    rating: 5,
+    text: "I love how modern and secure Ally Digital feels. The app is beautifully designed and the security features give me peace of mind.",
+  },
+];
 
 export default function TestimonialsSection() {
-  const [isInView, setIsInView] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const ref = useRef<HTMLElement | null>(null);
-
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Freelance Designer',
-      avatar: '👩‍💼',
-      rating: 5,
-      text: 'Switching to Ally Digital was the best decision for my finances. The intuitive interface and smart tools have helped me save 30% more each month.',
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Small Business Owner',
-      avatar: '👨‍💼',
-      rating: 5,
-      text: 'The business banking features are incredible. Instant transfers, automated accounting, and 24/7 support make running my business seamless.',
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Software Engineer',
-      avatar: '👩‍💻',
-      rating: 5,
-      text: 'I love how modern and secure Ally Digital feels. The app is beautifully designed and the security features give me peace of mind.',
-    },
-  ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, 0.12);
 
   return (
-    <section ref={ref} className="section-padding bg-white dark:bg-slate-950">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary dark:text-white mb-4">
-            Loved by Our Customers
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Join thousands of satisfied users managing their finances with confidence.
+    <section ref={ref} className="bg-stone py-20">
+      <div className="container">
+        <div className="max-w-3xl text-center mx-auto mb-12">
+          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
+            Customer Stories
           </p>
-        </motion.div>
+          <h2 className="serif text-4xl leading-tight text-ink sm:text-5xl">
+            Trusted by people who take their finances seriously.
+          </h2>
+        </div>
 
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-gray-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 md:p-12 shadow-soft dark:shadow-none dark:border dark:border-slate-700 text-center"
+        <div className="grid gap-6 lg:grid-cols-3">
+          {testimonials.map((testimonial, index) => (
+            <motion.article
+              key={testimonial.name}
+              ref={ref}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="rounded-4xl border border-stone-2 bg-white p-8 shadow-soft"
             >
-              {/* Avatar */}
-              <div className="text-6xl mb-4">{testimonials[current].avatar}</div>
-
-              {/* Rating */}
-              <div className="flex justify-center gap-1 mb-6">
-                {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={20}
-                    className="fill-accent text-accent"
-                  />
-                ))}
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-stone text-navy font-semibold">
+                  {testimonial.initials}
+                </div>
+                <div>
+                  <p className="text-ink font-semibold">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-sm text-ink-40">
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
-
-              {/* Testimonial Text */}
-              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 leading-relaxed italic">
-                “{testimonials[current].text}”
+              <div className="mb-4 flex gap-1 text-gold">
+                {Array.from({ length: testimonial.rating }).map(
+                  (_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      size={14}
+                      className="fill-gold text-gold"
+                    />
+                  ),
+                )}
+              </div>
+              <p className="text-ink leading-7 text-sm">
+                “{testimonial.text}”
               </p>
-
-              {/* Author Info */}
-              <div>
-                <h3 className="text-xl font-bold text-primary dark:text-white">
-                  {testimonials[current].name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {testimonials[current].role}
-                </p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Buttons */}
-          <div className="flex justify-center items-center gap-4 mt-8">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="p-2 rounded-full bg-accent/10 hover:bg-accent/20 text-accent transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft size={24} />
-            </motion.button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <motion.button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  animate={{
-                    scale: i === current ? 1.2 : 1,
-                    backgroundColor: i === current ? '#E07B2A' : '#E0E7FF',
-                  }}
-                  className="w-2 h-2 rounded-full"
-                  aria-label={`Go to testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}
-              className="p-2 rounded-full bg-accent/10 hover:bg-accent/20 text-accent transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight size={24} />
-            </motion.button>
-          </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

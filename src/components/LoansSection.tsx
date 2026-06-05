@@ -79,11 +79,11 @@ export default function LoansSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(224, 123, 42, 0.15)' }}
-                className="bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 shadow-soft dark:shadow-none dark:border dark:border-slate-700 border-2 border-transparent hover:border-accent transition-all"
+                className="bg-linear-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 shadow-soft dark:shadow-none dark:border dark:border-slate-700 border-2 border-transparent hover:border-accent transition-all"
               >
                 <motion.div
                   whileHover={{ rotate: 10 }}
-                  className="mb-6 inline-flex p-3 bg-gradient-to-br from-accent/10 to-primary/10 dark:from-accent/20 dark:to-primary/20 rounded-xl"
+                  className="mb-6 inline-flex p-3 bg-linear-to-br from-accent/10 to-primary/10 dark:from-accent/20 dark:to-primary/20 rounded-xl"
                 >
                   <Icon size={32} className="text-accent" />
                 </motion.div>

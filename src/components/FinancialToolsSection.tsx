@@ -81,12 +81,12 @@ export default function FinancialToolsSection() {
                   <motion.div
                     animate={isInView ? { scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] } : {}}
                     transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
-                    className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-accent/10 to-primary/10 rounded-full blur-xl"
+                    className="absolute top-4 right-4 w-20 h-20 bg-linear-to-br from-accent/10 to-primary/10 rounded-full blur-xl"
                   />
 
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: 10 }}
-                    className="mb-6 inline-flex p-4 bg-gradient-to-br from-accent/10 to-primary/10 dark:from-accent/20 dark:to-primary/20 rounded-xl relative z-10"
+                    className="mb-6 inline-flex p-4 bg-linear-to-br from-accent/10 to-primary/10 dark:from-accent/20 dark:to-primary/20 rounded-xl relative z-10"
                   >
                     <Icon size={32} className="text-accent" />
                   </motion.div>
@@ -106,7 +106,7 @@ export default function FinancialToolsSection() {
                         key={j}
                         animate={isInView ? { height: `${height}%` } : { height: '20%' }}
                         transition={{ delay: 0.3 + j * 0.1 }}
-                        className="flex-1 bg-gradient-to-t from-accent to-accent/50 rounded-t"
+                        className="flex-1 bg-linear-to-t from-accent to-accent/50 rounded-t"
                       />
                     ))}
                   </div>

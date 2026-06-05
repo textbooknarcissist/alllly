@@ -1,164 +1,110 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Shield } from "lucide-react";
+import useInView from "@/hooks/useInView";
 
 export default function HeroSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
-
-  const trustItems = [
-    'No Monthly Fees',
-    'Instant Transfers',
-    'Bank-Level Security',
-    '24/7 Support',
-  ];
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, 0.12);
 
   return (
-    <section className="min-h-screen pt-24 pb-12 bg-white dark:bg-slate-950 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column */}
+    <section
+      id="hero"
+      ref={ref}
+      className="relative min-h-screen overflow-hidden bg-navy pt-24 pb-12"
+    >
+      <div className="absolute inset-0 hero-bg-grid pointer-events-none" />
+      <div className="absolute -top-30 -right-30 h-130 w-130 rounded-full bg-gold-lt/20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 -left-30 h-105 w-105 rounded-full bg-navy-mid/70 blur-3xl pointer-events-none" />
+
+      <div className="container relative z-10">
+        <div className="grid min-h-[calc(100vh-6rem)] items-end gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="z-10"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
           >
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary dark:text-white leading-tight mb-6"
-            >
-              Banking Built Around Your <span className="text-accent">Goals</span>
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
-            >
-              Save smarter, spend confidently, invest for the future, and access flexible financing from one secure digital platform.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
-            >
-              <button className="btn-primary group">
-                Open Account
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </button>
-              <button className="btn-secondary">Explore Products</button>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-            >
-              {trustItems.map((item, i) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6 + i * 0.1 }}
-                  className="flex items-center text-gray-700 dark:text-gray-300"
-                >
-                  <CheckCircle size={20} className="text-accent mr-3 flex-shrink-0" />
-                  <span className="font-medium">{item}</span>
-                </motion.div>
-              ))}
-            </motion.div>
+            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
+              Digital Banking, Redefined
+            </p>
+            <h1 className="serif text-[clamp(2.8rem,5vw,4.5rem)] leading-[1.07] text-white">
+              Your money,
+              <br />
+              <em className="italic text-gold">
+                working harder
+              </em>
+              <br />
+              than ever before.
+            </h1>
+            <p className="max-w-105 text-base leading-7 text-white/75">
+              No hidden fees. Competitive yields. Smart tools that help you
+              save, spend, and invest — all from one account.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a href="#" className="btn-white text-navy">
+                Open a Free Account
+              </a>
+              <a
+                href="#products"
+                className="btn-ghost border-white/30 bg-white/10 text-white hover:bg-white hover:text-navy"
+              >
+                Explore Products
+              </a>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 text-sm text-white/60">
+              <Shield size={16} className="text-gold" />
+              <span>FDIC insured · No minimum balance · No monthly fees</span>
+            </div>
           </motion.div>
 
-          {/* Right Column - Dashboard Mockup */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-            className="relative h-96 sm:h-[500px]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="grid gap-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl" />
+            <div className="glass-card rounded-[28px] border border-white/10 p-8 text-white shadow-soft">
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-[0.7rem] uppercase tracking-[0.18em] text-white/60">
+                    High-Yield Savings APY
+                  </p>
+                </div>
+                <div className="inline-flex items-center gap-3 rounded-full bg-green/10 px-3 py-1 text-green text-xs font-semibold">
+                  <span className="h-2 w-2 rounded-full bg-green" />
+                  Rate updated daily
+                </div>
+              </div>
+              <div className="text-[2.25rem] font-semibold text-white">
+                4.20%{" "}
+                <span className="text-sm font-normal text-white/70">APY</span>
+              </div>
+              <p className="mt-3 text-sm text-white/65">
+                10× the national average
+              </p>
+            </div>
 
-            {/* Main Card */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-0 left-0 right-0 mx-auto w-80 glass-effect rounded-2xl p-6 shadow-premium"
-            >
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Total Balance</div>
-              <div className="text-3xl font-bold text-primary dark:text-white mb-6">
-                $24,582.50
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-3">
-                  <div className="text-xs text-gray-600 dark:text-gray-400">Checking</div>
-                  <div className="font-semibold text-primary dark:text-white">$12,450</div>
+            <div className="grid grid-cols-2 gap-4 rounded-[28px] bg-white/5 border border-white/10 p-4 text-white">
+              {[
+                { value: "$0", label: "Monthly fees" },
+                { value: "2-day", label: "Early direct deposit" },
+                { value: "24/7", label: "Customer support" },
+                { value: "256-bit", label: "Encryption" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-4"
+                >
+                  <p className="text-2xl font-semibold text-white">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-sm text-white/65">{item.label}</p>
                 </div>
-                <div className="bg-white/50 dark:bg-slate-800/50 rounded-lg p-3">
-                  <div className="text-xs text-gray-600 dark:text-gray-400">Savings</div>
-                  <div className="font-semibold text-accent">$12,133</div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Floating Card 1 */}
-            <motion.div
-              animate={{ y: [20, 0, 20], x: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-12 -left-6 w-72 glass-effect rounded-2xl p-4 shadow-medium"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-semibold text-gray-700 dark:text-gray-300">Recent Transactions</span>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Coffee Shop</span>
-                  <span className="text-red-500">-$4.50</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Salary Deposit</span>
-                  <span className="text-green-500">+$3,250</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Floating Card 2 */}
-            <motion.div
-              animate={{ y: [-10, 10, -10], x: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-              className="absolute -bottom-4 right-0 w-64 glass-effect rounded-2xl p-4 shadow-medium"
-            >
-              <div className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                Monthly Spending
-              </div>
-              <div className="flex gap-1 h-12 items-end">
-                {[60, 45, 80, 55, 70, 90, 65].map((height, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-gradient-to-t from-accent to-accent/50 rounded-t"
-                    style={{ height: `${height}%` }}
-                  />
-                ))}
-              </div>
-            </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>

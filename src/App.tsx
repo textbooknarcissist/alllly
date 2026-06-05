@@ -1,32 +1,28 @@
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
-import TrustBar from '@/components/TrustBar';
-import ProductsSection from '@/components/ProductsSection';
-import MoneyManagementSection from '@/components/MoneyManagementSection';
-import MobileExperienceSection from '@/components/MobileExperienceSection';
-import SecuritySection from '@/components/SecuritySection';
-import LoansSection from '@/components/LoansSection';
-import FinancialToolsSection from '@/components/FinancialToolsSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import ResourcesSection from '@/components/ResourcesSection';
-import FinalCTASection from '@/components/FinalCTASection';
-import Footer from '@/components/Footer';
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import TrustBar from "@/components/TrustBar";
+import ProductsSection from "@/components/ProductsSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import TrustNumbers from "@/components/TrustNumbers";
+import SecuritySection from "@/components/SecuritySection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import ResourcesSection from "@/components/ResourcesSection";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
 
 export default function App() {
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-stone">
       <Navbar />
       <HeroSection />
       <TrustBar />
       <ProductsSection />
-      <MoneyManagementSection />
-      <MobileExperienceSection />
+      <HowItWorksSection />
+      <TrustNumbers />
       <SecuritySection />
-      <LoansSection />
-      <FinancialToolsSection />
       <TestimonialsSection />
       <ResourcesSection />
-      <FinalCTASection />
+      <CTASection />
       <Footer />
     </main>
   );

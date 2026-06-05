@@ -50,7 +50,7 @@ export default function MoneyManagementSection() {
                 className="relative w-full h-full flex flex-col justify-center items-center"
               >
                 {/* Center circle */}
-                <div className="w-24 h-24 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mb-4">
+                <div className="w-24 h-24 bg-linear-to-br from-accent to-primary rounded-full flex items-center justify-center mb-4">
                   <span className="text-white font-bold text-center text-sm">Income</span>
                 </div>
 
@@ -64,7 +64,7 @@ export default function MoneyManagementSection() {
                       transition={{ delay: 0.2 + i * 0.1 }}
                       className="flex flex-col items-center"
                     >
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center border border-primary/30 dark:border-primary/50">
+                      <div className="w-16 h-16 bg-linear-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center border border-primary/30 dark:border-primary/50">
                         <span className="text-xs font-semibold text-center text-gray-700 dark:text-gray-200">
                           {item}
                         </span>
@@ -97,7 +97,7 @@ export default function MoneyManagementSection() {
                     transition={{ delay: 0.3 + i * 0.1 }}
                     className="flex items-start"
                   >
-                    <div className="flex-shrink-0 mr-4 p-2 bg-accent/10 rounded-lg">
+                    <div className="shrink-0 mr-4 p-2 bg-accent/10 rounded-lg">
                       <Icon className="text-accent" size={24} />
                     </div>
                     <div>

@@ -35,7 +35,7 @@ export default function MobileExperienceSection() {
   ];
 
   return (
-    <section ref={ref} className="section-padding bg-gradient-to-br from-primary via-primary/95 to-slate-900 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 text-white">
+    <section ref={ref} className="section-padding bg-linear-to-br from-primary via-primary/95 to-slate-900 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 text-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -63,7 +63,7 @@ export default function MobileExperienceSection() {
               {/* Phone Frame */}
               <div className="absolute inset-0 bg-gray-900 rounded-3xl border-8 border-gray-800 shadow-2xl overflow-hidden">
                 {/* Phone Content */}
-                <div className="w-full h-full bg-gradient-to-b from-slate-950 to-slate-900 p-4 flex flex-col justify-between">
+                <div className="w-full h-full bg-linear-to-b from-slate-950 to-slate-900 p-4 flex flex-col justify-between">
                   {/* Top Bar */}
                   <div className="text-center">
                     <div className="text-xs text-gray-500 mb-4">9:41</div>
@@ -133,7 +133,7 @@ export default function MobileExperienceSection() {
                     transition={{ delay: 0.2 + i * 0.1 }}
                     className="glass-effect p-6 rounded-xl"
                   >
-                    <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4`}>
+                    <div className={`w-12 h-12 bg-linear-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4`}>
                       <Icon size={24} className="text-white" />
                     </div>
                     <h3 className="font-semibold">{feature.label}</h3>

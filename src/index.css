@@ -1,9 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-@reference "tailwindcss";
-@reference "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap");
+@import "tailwindcss";
+
+:root {
+  --navy: #0d1b2a;
+  --navy-90: #132136;
+  --navy-mid: #1e3352;
+  --stone: #f5f3ee;
+  --stone-2: #eae7e0;
+  --ink: #0d1b2a;
+  --ink-60: #4a5568;
+  --ink-40: #718096;
+  --gold: #c9972b;
+  --gold-lt: #f5e5c0;
+  --green: #1a6b45;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 1px 4px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 4px 20px rgba(13, 27, 42, 0.1);
+  --shadow-lg: 0 12px 48px rgba(13, 27, 42, 0.14);
+}
 
 * {
   margin: 0;
@@ -13,144 +30,209 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
   min-height: 100vh;
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #ffffff;
-  color: #0f172a;
+  font-family: "Sora", system-ui, sans-serif;
+  background-color: var(--stone);
+  color: var(--ink);
 }
 
-.section-padding {
-  padding: 3rem 1rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "DM Serif Display", Georgia, serif;
 }
 
-@media (min-width: 640px) {
-  .section-padding {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+button,
+a,
+input,
+textarea {
+  font-family: inherit;
 }
 
-@media (min-width: 768px) {
-  .section-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 @media (min-width: 1024px) {
-  .section-padding {
-    padding-left: 4rem;
-    padding-right: 4rem;
+  .container {
+    padding: 0 2rem;
   }
 }
 
-.btn-primary {
+.nav-link {
+  font-family: "Sora", sans-serif;
+  font-weight: 500;
+  color: var(--ink-60);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--navy);
+  background: var(--stone);
+}
+
+.btn-primary,
+.btn-white,
+.btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background-color: #0d1b2a;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-white {
+  padding: 0.95rem 1.8rem;
+  background: #ffffff;
+  color: var(--navy);
+}
+
+.btn-white:hover {
+  background: var(--stone);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  padding: 0.95rem 1.8rem;
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+
+.btn-ghost:hover {
+  background: var(--navy);
   color: #ffffff;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
 }
 
-.btn-primary:hover {
-  background-color: rgba(13, 27, 42, 0.9);
+.shadow-soft {
+  box-shadow: var(--shadow-sm);
 }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background-color: #ffffff;
-  color: #0d1b2a;
-  font-weight: 600;
-  border: 2px solid #0d1b2a;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
+.shadow-lg-custom {
+  box-shadow: var(--shadow-lg);
 }
 
-.btn-secondary:hover {
-  background-color: #f8fafc;
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
 }
 
-.btn-accent {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background-color: #e07b2a;
-  color: #ffffff;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
+.hero-bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-.btn-accent:hover {
-  background-color: #d4681f;
+.text-muted {
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.glass-effect {
-  backdrop-filter: blur(24px);
-  background-color: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.text-ink-60 {
+  color: var(--ink-60);
 }
 
-.dark .glass-effect {
-  background-color: rgba(15, 23, 42, 0.84);
-  border-color: rgba(148, 163, 184, 0.12);
+.text-ink-40 {
+  color: var(--ink-40);
 }
 
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.border-stone-2 {
+  border-color: var(--stone-2);
 }
 
-.card-hover:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  transform: translateY(-4px);
+.bg-navy {
+  background-color: var(--navy);
 }
 
-.gradient-text {
-  background: linear-gradient(90deg, #0d1b2a, #e07b2a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.bg-navy-90 {
+  background-color: var(--navy-90);
 }
 
-.text-balance {
-  text-wrap: balance;
+.bg-stone {
+  background-color: var(--stone);
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.bg-stone-2 {
+  background-color: var(--stone-2);
 }
 
-::-webkit-scrollbar-track {
-  background: #f8fafc;
+.text-gold {
+  color: var(--gold);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 9999px;
+.fill-gold {
+  fill: var(--gold);
 }
 
-.dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+.text-green {
+  color: var(--green);
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #475569;
+.text-stone {
+  color: var(--stone);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-ink-60 {
+  color: var(--ink-60);
+}
+
+.text-navy {
+  color: var(--navy);
+}
+
+.bg-gold-lt {
+  background-color: var(--gold-lt);
+}
+
+.bg-navy-mid {
+  background-color: var(--navy-mid);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.border-gold {
+  border-color: var(--gold);
+}
+
+.border-navy {
+  border-color: var(--navy);
+}
+
+.border-stone-2 {
+  border-color: var(--stone-2);
+}
+
+.runtime-fix {
+  display: none;
 }

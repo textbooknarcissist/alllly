@@ -1,108 +1,95 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Lock, Shield, Fingerprint, Bell } from 'lucide-react';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Lock, Shield, Fingerprint, Bell } from "lucide-react";
+import useInView from "@/hooks/useInView";
+
+const securityFeatures = [
+  {
+    icon: Lock,
+    title: "Encryption",
+    description: "256-bit encryption protects all your data.",
+  },
+  {
+    icon: Shield,
+    title: "Fraud Detection",
+    description: "Continuous monitoring detects suspicious activity.",
+  },
+  {
+    icon: Fingerprint,
+    title: "Biometric Authentication",
+    description: "Face and fingerprint login for added security.",
+  },
+  {
+    icon: Bell,
+    title: "Instant Alerts",
+    description: "Real-time notifications for every transaction.",
+  },
+];
 
 export default function SecuritySection() {
-  const [isInView, setIsInView] = useState(false);
-  const ref = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const securityFeatures = [
-    {
-      icon: Lock,
-      title: 'Encryption',
-      description: '256-bit encryption protects all your data.',
-    },
-    {
-      icon: Shield,
-      title: 'Fraud Detection',
-      description: 'Continuous monitoring detects suspicious activity.',
-    },
-    {
-      icon: Fingerprint,
-      title: 'Biometric Authentication',
-      description: 'Face and fingerprint login for added security.',
-    },
-    {
-      icon: Bell,
-      title: 'Instant Alerts',
-      description: 'Real-time notifications for all transactions.',
-    },
-  ];
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, 0.12);
 
   return (
-    <section ref={ref} className="section-padding bg-gray-50 dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary dark:text-white mb-4">
-            Security You Can Trust
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Bank-grade security with multiple layers of protection.
+    <section id="security" ref={ref} className="bg-white py-20">
+      <div className="container">
+        <div className="text-center mb-16">
+          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
+            Security
           </p>
-        </motion.div>
+          <h2 className="serif text-4xl leading-tight text-ink sm:text-5xl">
+            Your money is protected at every level.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-ink-60">
+            Bank-grade security built into every transaction, login, and data
+            point — because your finances deserve nothing less.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {securityFeatures.map((feature, i) => {
+        <div className="grid gap-6 lg:grid-cols-4">
+          {securityFeatures.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-soft dark:shadow-none dark:border dark:border-slate-700 group hover:shadow-premium transition-shadow"
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="rounded-[1.25rem] border border-stone-2 bg-white p-8"
               >
-                {/* Icon Circle */}
-                <motion.div
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  className="mb-6 inline-flex p-4 bg-gradient-to-br from-primary/10 to-accent/10 dark:from-primary/20 dark:to-accent/20 rounded-full"
-                >
-                  <Icon size={32} className="text-accent" />
-                </motion.div>
-
-                <h3 className="text-xl font-bold text-primary dark:text-white mb-3">
+                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-[14px] bg-stone text-navy">
+                  <Icon size={20} />
+                </div>
+                <h3 className="text-lg font-semibold text-ink mb-3">
                   {feature.title}
                 </h3>
-
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-sm leading-6 text-ink-60">
                   {feature.description}
                 </p>
-
-                {/* Decorative Bottom Line */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : {}}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
-                  className="mt-6 h-1 bg-gradient-to-r from-accent to-primary origin-left"
-                />
               </motion.div>
             );
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mt-12 rounded-3xl border border-stone-2 bg-stone p-6 sm:flex sm:items-center sm:justify-between"
+        >
+          <div className="inline-flex items-center justify-center rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white">
+            FDIC
+          </div>
+          <p className="mt-4 text-sm leading-6 text-ink-60 sm:mt-0">
+            Your deposits are{" "}
+            <span className="font-semibold text-ink">
+              insured up to $250,000
+            </span>{" "}
+            by the Federal Deposit Insurance Corporation.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

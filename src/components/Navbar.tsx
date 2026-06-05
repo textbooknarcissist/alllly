@@ -1,105 +1,79 @@
-import { useEffect, useState } from 'react';
-import { Menu, Moon, Sun, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const navItems = [
+  { label: "Personal Banking", href: "#products" },
+  { label: "Business", href: "#products" },
+  { label: "Loans", href: "#products" },
+  { label: "Invest", href: "#products" },
+  { label: "Resources", href: "#resources" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    const storedTheme = window.localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = storedTheme === 'dark' || (!storedTheme && prefersDark) ? 'dark' : 'light';
-
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-    setTheme(initialTheme);
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
-    window.localStorage.setItem('theme', nextTheme);
-    setTheme(nextTheme);
-  };
-
-  const navItems = [
-    { label: 'Personal Banking', href: '#personal' },
-    { label: 'Business Banking', href: '#business' },
-    { label: 'Loans', href: '#loans' },
-    { label: 'Investments', href: '#investments' },
-    { label: 'Resources', href: '#resources' },
-  ];
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
           scrolled
-            ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-soft border-b border-gray-200 dark:border-slate-800'
-            : 'bg-transparent'
+            ? "bg-white/95 backdrop-blur-sm border-b border-stone-2 shadow-soft"
+            : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <a href="/" className="flex items-center">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">A</span>
-              </div>
-              <span className="ml-2 text-xl font-bold text-primary dark:text-white hidden sm:inline">
-                Ally Digital
-              </span>
-            </a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-accent transition-colors duration-200"
-                >
-                  {item.label}
-                </a>
-              ))}
+        <div className="container flex items-center justify-between gap-4 py-4">
+          <a href="#" className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-navy text-white font-semibold text-lg">
+              A
             </div>
+            <span className="text-base font-semibold text-ink">
+              Ally Digital
+            </span>
+          </a>
 
-            {/* Desktop CTA Buttons */}
-            <div className="hidden md:flex items-center space-x-3">
-              <button
-                onClick={toggleTheme}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-primary shadow-sm transition-colors hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-gray-100 dark:hover:bg-slate-800"
-                aria-label="Toggle theme"
+          <div className="hidden lg:flex items-center gap-3">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="nav-link rounded-full px-4 py-2"
               >
-                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-              <button className="px-4 py-2 text-primary font-semibold hover:text-accent transition-colors">
-                Log In
-              </button>
-              <button className="btn-primary">Open Account</button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+                {item.label}
+              </a>
+            ))}
           </div>
+
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="#"
+              className="text-sm font-semibold text-ink-60 hover:text-navy transition-colors"
+            >
+              Log In
+            </a>
+            <a href="#hero" className="btn-white text-navy">
+              Open Account
+            </a>
+          </div>
+
+          <button
+            className="lg:hidden p-2 text-ink-60"
+            onClick={() => setIsOpen((value) => !value)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -107,42 +81,62 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/40"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              initial={{ x: -300 }}
+              initial={{ x: -320 }}
               animate={{ x: 0 }}
-              exit={{ x: -300 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed left-0 top-0 h-screen w-64 bg-white dark:bg-slate-950 z-40 pt-20 md:hidden shadow-premium"
+              exit={{ x: -320 }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+              className="fixed left-0 top-0 z-50 h-full w-72 bg-white shadow-lg"
             >
-              <div className="px-4 space-y-2">
-                {navItems.map((item, i) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="block px-4 py-3 text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-accent transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800"
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-                <div className="pt-4 space-y-2 border-t border-gray-200 dark:border-slate-800">
+              <div className="p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-white font-semibold">
+                      A
+                    </div>
+                    <span className="font-semibold text-ink">
+                      Ally Digital
+                    </span>
+                  </div>
                   <button
-                    onClick={toggleTheme}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-white text-primary hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:text-gray-100 dark:hover:bg-slate-800 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                    className="text-ink-60"
                   >
-                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                    Theme
+                    <X size={24} />
                   </button>
-                  <button className="w-full px-4 py-2 text-primary font-semibold border-2 border-primary rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                </div>
+
+                <div className="space-y-2">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="block rounded-2xl px-4 py-3 text-ink font-medium hover:bg-stone"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="space-y-3 pt-4 border-t border-stone-2">
+                  <a
+                    href="#"
+                    className="block rounded-2xl px-4 py-3 text-center text-ink-60 font-semibold hover:text-navy hover:bg-stone transition"
+                  >
                     Log In
-                  </button>
-                  <button className="w-full btn-primary">Open Account</button>
+                  </a>
+                  <a
+                    href="#hero"
+                    onClick={() => setIsOpen(false)}
+                    className="block rounded-2xl bg-navy px-4 py-3 text-center text-white font-semibold"
+                  >
+                    Open Account
+                  </a>
                 </div>
               </div>
             </motion.div>

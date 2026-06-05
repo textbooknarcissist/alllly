@@ -1,122 +1,97 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import useInView from "@/hooks/useInView";
+
+const articles = [
+  {
+    title: "How To Build An Emergency Fund",
+    category: "Savings",
+    excerpt:
+      "Learn the proven strategies to build a safety net that protects your financial future.",
+    image: "📊",
+    readTime: "5 min read",
+  },
+  {
+    title: "Understanding Credit Scores",
+    category: "Credit",
+    excerpt:
+      "Discover what makes up your credit score and how to improve it for better financial opportunities.",
+    image: "📈",
+    readTime: "7 min read",
+  },
+  {
+    title: "Business Banking Essentials",
+    category: "Business",
+    excerpt:
+      "Everything you need to know about managing business finances efficiently.",
+    image: "💼",
+    readTime: "8 min read",
+  },
+];
 
 export default function ResourcesSection() {
-  const [isInView, setIsInView] = useState(false);
-  const ref = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const articles = [
-    {
-      title: 'How To Build An Emergency Fund',
-      category: 'Savings',
-      excerpt: 'Learn the proven strategies to build a safety net that protects your financial future.',
-      image: '📊',
-      readTime: '5 min read',
-    },
-    {
-      title: 'Understanding Credit Scores',
-      category: 'Credit',
-      excerpt: 'Discover what makes up your credit score and how to improve it for better financial opportunities.',
-      image: '📈',
-      readTime: '7 min read',
-    },
-    {
-      title: 'Business Banking Essentials',
-      category: 'Business',
-      excerpt: 'Everything you need to know about managing business finances efficiently.',
-      image: '💼',
-      readTime: '8 min read',
-    },
-  ];
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, 0.12);
 
   return (
-    <section ref={ref} className="section-padding bg-gray-50 dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary dark:text-white mb-4">
-            Financial Insights
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Learn from our experts and stay updated with the latest financial tips.
-          </p>
-        </motion.div>
+    <section id="resources" ref={ref} className="bg-white py-20">
+      <div className="container">
+        <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold">
+              Resources
+            </p>
+            <h2 className="serif text-4xl leading-tight text-ink sm:text-5xl">
+              Fresh insights for better financial decisions.
+            </h2>
+          </div>
+          <a
+            href="#"
+            className="btn-ghost border-navy bg-transparent text-navy"
+          >
+            View All Articles
+          </a>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.map((article, i) => (
-            <motion.div
+        <div className="grid gap-6 lg:grid-cols-3">
+          {articles.map((article, index) => (
+            <motion.article
               key={article.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-soft dark:shadow-none dark:border dark:border-slate-700 hover:shadow-premium transition-shadow"
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="group overflow-hidden rounded-[1.75rem] border border-stone-2 bg-white transition duration-300 hover:-translate-y-3 hover:shadow-lg-custom"
             >
-              {/* Image Area */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative h-48 bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center overflow-hidden"
-              >
-                <span className="text-6xl">{article.image}</span>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  className="absolute inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center"
-                >
-                  <span className="text-white font-semibold">Read Article</span>
-                </motion.div>
-              </motion.div>
-
-              {/* Content */}
+              <div className="flex h-40 items-center justify-center bg-stone border-b border-stone-2 text-5xl">
+                {article.image}
+              </div>
               <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-semibold">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <span className="inline-flex rounded-full bg-stone px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-navy">
                     {article.category}
                   </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">{article.readTime}</span>
+                  <span className="text-xs text-ink-40">
+                    {article.readTime}
+                  </span>
                 </div>
-
-                <h3 className="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-semibold text-ink mb-3">
                   {article.title}
                 </h3>
-
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                <p className="mb-6 text-sm leading-7 text-ink-60">
                   {article.excerpt}
                 </p>
-
-                <motion.button
-                  whileHover={{ x: 5 }}
-                  className="flex items-center text-accent font-semibold hover:text-accent/80 transition-colors"
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-navy font-semibold transition hover:underline"
                 >
-                  Read More
-                  <ArrowRight size={18} className="ml-2" />
-                </motion.button>
+                  Read article
+                  <ArrowRight size={16} />
+                </a>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

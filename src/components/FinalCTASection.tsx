@@ -31,7 +31,7 @@ export default function FinalCTASection() {
       className="relative min-h-96 flex items-center justify-center py-20 md:py-32 overflow-hidden"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-slate-900 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary via-primary/95 to-slate-900 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950" />
 
       {/* Animated background elements */}
       <motion.div
