@@ -2,7 +2,7 @@
 
 A production-ready, fully responsive digital banking website built with modern web technologies. Inspired by the best practices of modern fintech platforms like Monzo, Revolut, and Nubank.
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?style=flat-square&logo=tailwindcss)
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11-000000?style=flat-square)
@@ -17,7 +17,7 @@ A production-ready, fully responsive digital banking website built with modern w
 - 🎨 **Beautiful Color Scheme** - Deep navy (#0D1B2A) primary with rich orange (#E07B2A) accent
 
 ### Technical Excellence
-- ⚙️ **Next.js 15 App Router** - Latest Next.js with App Router
+- ⚙️ **Vite** - Lightning fast frontend tooling
 - 📘 **TypeScript** - Full TypeScript support for type safety
 - 🎯 **Tailwind CSS 4** - Utility-first CSS for rapid development
 - 🎪 **Shadcn UI Components** - Accessible, reusable components
@@ -76,11 +76,11 @@ npm start
 ## 📁 Project Structure
 
 ```
-alllly/
-├── app/
-│   ├── layout.tsx           # Root layout with metadata
-│   ├── page.tsx             # Main page component
-│   └── globals.css          # Global styles
+allly/
+├── src/
+│   ├── App.tsx              # Main application component
+│   ├── main.tsx             # Application entry point
+│   └── index.css            # Global styles
 ├── components/
 │   ├── Navbar.tsx           # Navigation with mobile menu
 │   ├── HeroSection.tsx      # Hero section with dashboard mockup
@@ -98,7 +98,7 @@ alllly/
 ├── package.json             # Dependencies and scripts
 ├── tailwind.config.ts       # Tailwind configuration
 ├── postcss.config.js        # PostCSS configuration
-├── next.config.ts           # Next.js configuration
+├── vite.config.ts           # Vite configuration
 ├── tsconfig.json            # TypeScript configuration
 └── README.md                # This file
 ```
@@ -124,8 +124,6 @@ Update component content directly in each component file. All sections use TypeS
 
 ## 📊 Performance Optimizations
 
-- ✅ Server Components by default
-- ✅ Image optimization with Next.js Image
 - ✅ Lazy loading with Intersection Observer
 - ✅ CSS optimization with Tailwind
 - ✅ Minimal JavaScript dependencies
@@ -173,7 +171,7 @@ npm run lint          # Run ESLint
 ## 📦 Dependencies
 
 ### Core
-- **next**: 15.0.0 - React framework
+- **vite**: 5.0.0 - Frontend tooling
 - **react**: 19.0.0 - UI library
 - **typescript**: 5.0.0 - Type safety
 
@@ -243,4 +241,4 @@ For questions or issues, please create an issue in the repository.
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+Built with ❤️ using React, Vite, TypeScript, and Tailwind CSS
