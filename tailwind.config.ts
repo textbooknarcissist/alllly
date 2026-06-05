@@ -1,38 +1,33 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: 'class',
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: '#0D1B2A',
-        accent: '#E07B2A',
-        'navy-dark': '#0A1118',
-        'navy-light': '#1A2332',
+        primary: "#0D1B2A",
+        "primary-90": "#132136",
+        "primary-mid": "#1E3352",
+        accent: "#E07B2A",
+        "accent-dark": "#C96A22",
+        surface: "#F5F7FA",
+        "surface-2": "#E8ECF1",
+        success: "#10B981",
+        ink: "#0D1B2A",
+        "ink-muted": "#4A5568",
+        "ink-light": "#718096",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-      animation: {
-        'fade-up': 'fadeUp 0.6s ease-out',
-        float: 'float 3s ease-in-out infinite',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+        sans: ["Sora", "system-ui", "sans-serif"],
+        display: ["DM Serif Display", "Georgia", "serif"],
       },
       boxShadow: {
-        soft: '0 2px 8px rgba(0, 0, 0, 0.08)',
-        medium: '0 4px 16px rgba(0, 0, 0, 0.12)',
-        premium: '0 20px 40px rgba(0, 0, 0, 0.15)',
+        soft: "0 2px 8px rgba(13, 27, 42, 0.06)",
+        medium: "0 4px 20px rgba(13, 27, 42, 0.1)",
+        premium: "0 20px 48px rgba(13, 27, 42, 0.14)",
+      },
+      borderRadius: {
+        "4xl": "2rem",
       },
     },
   },
