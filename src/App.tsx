@@ -12,7 +12,7 @@ import ResourcesSection from '@/components/ResourcesSection';
 import FinalCTASection from '@/components/FinalCTASection';
 import Footer from '@/components/Footer';
 
-export default function Home() {
+export default function App() {
   return (
     <main className="overflow-hidden">
       <Navbar />

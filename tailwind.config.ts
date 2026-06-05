@@ -2,10 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   darkMode: 'class',
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
@@ -19,7 +16,7 @@ const config: Config = {
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out',
-        'float': 'float 3s ease-in-out infinite',
+        float: 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
@@ -33,9 +30,9 @@ const config: Config = {
         },
       },
       boxShadow: {
-        'soft': '0 2px 8px rgba(0, 0, 0, 0.08)',
-        'medium': '0 4px 16px rgba(0, 0, 0, 0.12)',
-        'premium': '0 20px 40px rgba(0, 0, 0, 0.15)',
+        soft: '0 2px 8px rgba(0, 0, 0, 0.08)',
+        medium: '0 4px 16px rgba(0, 0, 0, 0.12)',
+        premium: '0 20px 40px rgba(0, 0, 0, 0.15)',
       },
     },
   },
